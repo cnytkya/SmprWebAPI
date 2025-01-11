@@ -39,13 +39,14 @@ namespace SmprWebAPI.Server.Repository
             var existingEmp = await _appDbcontext.Employees.FindAsync(employee.Id);
             if (existingEmp != null)
             {
+                //Var olan çalışanın bilgilerini güncelleme. Burda çalışanın name, email, mobile, age, salary ve status bilgileri güncelleniyor.
                 existingEmp.Name = employee.Name;
                 existingEmp.Email = employee.Email;
                 existingEmp.Mobile = employee.Mobile;
                 existingEmp.Age = employee.Age;
                 existingEmp.Salary = employee.Salary;
                 existingEmp.Status = employee.Status;
-                _appDbcontext.Employees.Update(employee);
+                _appDbcontext.Employees.Update(existingEmp);
                 await _appDbcontext.SaveChangesAsync();
             }
         }
